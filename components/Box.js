@@ -25,6 +25,7 @@ export const Box = ({ launches }) => {
               }
               width={32}
               height={32}
+              priority={true}
             />{" "}
             <span
               className={`${
