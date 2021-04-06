@@ -11,6 +11,7 @@ export const Box = ({ launches }) => {
             layout="fill"
             className="outerimg"
             quality={50}
+            priority={true}
           />
         )}
 
