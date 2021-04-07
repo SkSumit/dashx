@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 export const Box = ({ launches }) => {
+  const [show, setshow] = useState(false);
   return (
     <div className="tile is-parent is-fixed-size ">
-      <div className="tile is-child box outer ">
-        {launches.links.flickr_images[0] && (
+      <a
+        className={`tile is-child box outer ${
+          launches.links.article_link ? "is-clickable" : ""
+        }   `}
+        onMouseEnter={() => setshow(true)}
+        onMouseLeave={() => setshow(false)}
+        target="_blank"
+        href={launches.links.article_link}
+      >
+        {show && (
           <Image
-            src={launches.links.flickr_images[0]}
+            src={
+              launches.links.flickr_images[0]
+                ? launches.links.flickr_images[0]
+                : "/spacex.png"
+            }
             layout="fill"
             className="outerimg"
             quality={50}
-            priority={true}
           />
         )}
-
         <div className=" is-flex is-flex-direction-column is-fixed-size inner ">
-          <h1 className={`title is-flex-grow-2 has-text-primary-light `}>
+          <h1 className={`title is-flex-grow-1 has-text-primary-light `}>
             <Image
               src={
                 launches.links.mission_patch_small
@@ -25,16 +36,8 @@ export const Box = ({ launches }) => {
               }
               width={32}
               height={32}
-              priority={true}
             />{" "}
-            <span
-              className={`${
-                launches.links.flickr_images[0] ? "has-text-primary-light" : ""
-              }`}
-            >
-              {" "}
-              {launches.mission_name}{" "}
-            </span>
+            {launches.mission_name}{" "}
           </h1>
 
           <h3 className="title is-6 ">
@@ -46,15 +49,13 @@ export const Box = ({ launches }) => {
           </h3>
           <h3 className="subtitle is-7">
             {launches.launch_success ? (
-              <span className="tag is-success" style={{ width: "50px" }}>
-                Success
-              </span>
+              <h3 className="tag is-success">Success</h3>
             ) : (
-              <span className="tag is-danger">Failed</span>
+              <h3 className="tag is-danger">Failed</h3>
             )}
           </h3>
         </div>
-      </div>
+      </a>
     </div>
   );
 };

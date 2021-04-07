@@ -2,9 +2,16 @@ import React from "react";
 import { chunk } from "lodash";
 import { Box } from "./Box";
 
-export const Grid = ({ launches }) => {
-  const chunkedLaunches = chunk(launches, 5);
-
+export const Grid = ({ launches, gridLoading }) => {
+  const chunkedLaunches = chunk(launches, 4);
+  console.log(gridLoading)
+  if (gridLoading) {
+    return (
+      <div className="container has-text-centered">
+        <h1 className="title is-1 has-text-centered bounce">🚀 </h1>
+      </div>
+    );
+  }
   return (
     <div>
       {chunkedLaunches.map((row, index) => {

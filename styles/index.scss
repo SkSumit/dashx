@@ -2,12 +2,17 @@ body,.main{
   background-color: black !important;
 }
 .tile.is-child.box,.is-fixed-size{
-  min-height: 200px;
+  min-height: 150px;
 }
 $box-background-color : #131313; 
 $box-color:white;
 $title-color: white; 
 $subtitle-color: white;
+
+a{
+  border: transparent !important;
+  color: inherit !important;
+}
 
 .outer {
   position: relative;

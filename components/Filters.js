@@ -21,6 +21,12 @@ export const Filters = ({ filters, setFilters, allYears }) => {
       color: "black",
       zIndex:2
     }),
+    placeholder: (base, state) => ({
+        
+            ...base,
+            color: 'white',
+        
+    })
   };
 
   const options = [];
@@ -78,11 +84,9 @@ export const Filters = ({ filters, setFilters, allYears }) => {
       </div>
       <div className={"column is-4 "} style={{zIndex:2}}>
         <Select
+        
           options={options}
-          defaultValue={{
-            value: filters.year,
-            label: filters.year,
-          }}
+          placeholder="Select Year"
           styles={customStyles}
           isSearchable={true}
           onChange={changeYear}

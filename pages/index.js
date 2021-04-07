@@ -8,10 +8,11 @@ import { loadState, saveState } from "../utils";
 export default function Home() {
   const [launches, setLaunches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [gridLoading, setGridLoading] = useState(false);
   const [filters, setFilters] = useState(loadState);
-
+  
   useEffect(() => {
-    setLoading(true)
+    setGridLoading(true)
     axios
       .post("/api/launches", {
         filters,
@@ -19,7 +20,9 @@ export default function Home() {
       .then(({ data }) => {
         setLaunches(data);
         setLoading(false);
+        setGridLoading(false)
       });
+    
     saveState(filters);
   }, [filters]);
 
@@ -62,7 +65,7 @@ export default function Home() {
 
       <section className="hero is-fullheight">
         <div className="hero-body">
-          <Grid launches={launches} />
+          <Grid launches={launches} gridLoading={gridLoading}/>
         </div>
       </section>
     </div>
